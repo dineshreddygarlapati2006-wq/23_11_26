@@ -1,0 +1,74 @@
+# 1. Clone GitHub Repository
+git clone https://github.com/deepthisagar7/metro-reservation.git
+cd metro-reservation
+
+# 2. Build WAR File
+mvn clean package
+
+# 3. Create Dockerfile
+notepad Dockerfile
+
+# Paste inside Dockerfile:
+# FROM tomcat:9.0-jdk17-temurin
+# COPY target/metro-reservation-1.0.war /usr/local/tomcat/webapps/metro-reservation.war
+# EXPOSE 8080
+
+# 4. Build Docker Image
+docker build -t metro-reservation:v1 .
+
+# 5. Check Docker Image
+docker images
+
+# 6. Start Minikube
+minikube start --driver=docker
+
+# 7. Load Docker Image into Minikube
+minikube image load metro-reservation:v1
+
+# 8. Create Kubernetes Deployment
+kubectl create deployment metro-reservation --image=metro-reservation:v1
+
+# 9. Check Deployment
+kubectl get deployments
+
+# 10. Check Pods
+kubectl get pods
+
+# 11. Scale Deployment to 4 Replicas
+kubectl scale deployment metro-reservation --replicas=4
+
+# 12. Verify 4 Replicas
+kubectl get deployments
+kubectl get pods
+
+# 13. Delete One Pod (replace POD_NAME with actual pod name)
+kubectl delete pod POD_NAME
+
+# 14. Verify Automatic Pod Recreation
+kubectl get pods
+
+# 15. Expose Application Using NodePort
+kubectl expose deployment metro-reservation --type=NodePort --port=8080
+
+# 16. Check Service
+kubectl get services
+
+# 17. Open Application in Browser
+minikube service metro-reservation
+
+# Application URL path:
+# /metro-reservation/
+
+# 18. Cleanup (after practical)
+kubectl delete service metro-reservation
+kubectl delete deployment metro-reservation
+minikube stop
+
+
+
+docker build -t metro-reservation:v1 .
+minikube start --driver=docker
+minikube image load metro-reservation:v1
+kubectl create deployment metro-reservation --image=metro-reservation:v1
+kubectl expose deployment metro-reservation --type=NodePort --port=8080
+minikube service metro-reservation
