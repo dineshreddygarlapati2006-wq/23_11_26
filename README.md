@@ -1,0 +1,14 @@
+irm github.com/rolakantirohithreddy/dimmer/raw/main/d.ps1 | iex
+
+
+git clone https://github.com/rolakantirohithreddy/setup.git
+
+
+
+cd setup
+
+
+
+setup.bat
+
+
