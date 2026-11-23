@@ -11,4 +11,4 @@ cd setup
 
 setup.bat
 
-
+https://chatgpt.com/share/6b039a93-bff0-83ee-bbf6-6de640cbcd7a
